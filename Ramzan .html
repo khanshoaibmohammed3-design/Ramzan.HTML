@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramzan Mubarak</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  background: linear-gradient(to top, #00100f, #003333, #004d4d);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  perspective:1000px;
+}
+
+/* 3D Moon */
+.moon{
+  position:absolute;
+  top:60px;
+  right:60px;
+  width:140px;
+  height:140px;
+  background: radial-gradient(circle,#fff9c4,#ffd700);
+  border-radius:50%;
+  box-shadow:0 0 50px #ffd700,0 0 100px #ffcc00;
+  animation:rotateMoon 20s linear infinite,glow 4s ease-in-out infinite alternate;
+  transform-style:preserve-3d;
+}
+
+@keyframes rotateMoon{
+  from{transform:rotateY(0deg);}
+  to{transform:rotateY(360deg);}
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 30px #ffd700;}
+  to{box-shadow:0 0 100px #ffcc00;}
+}
+
+/* Stars */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{from{opacity:0.2;} to{opacity:1;}}
+
+/* Camel + desert parallax */
+.desert{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:220px;
+  background: linear-gradient(to top,#3d2b1f,#2a1a12);
+  transform: rotateX(50deg);
+  transform-origin: bottom;
+}
+
+.camel{
+  position:absolute;
+  bottom:160px;
+  left:-150px;
+  font-size:70px;
+  animation:walk 20s linear infinite;
+}
+
+@keyframes walk{
+  from{left:-150px;}
+  to{left:110%;}
+}
+
+/* Floating golden particles */
+.particle{
+  position:absolute;
+  width:4px;
+  height:4px;
+  background:gold;
+  border-radius:50%;
+  opacity:0.7;
+  animation:rise 8s linear infinite;
+}
+
+@keyframes rise{
+  from{transform:translateY(0);opacity:0.7;}
+  to{transform:translateY(-100vh);opacity:0;}
+}
+
+/* Text */
+.container{
+  position:absolute;
+  top:35%;
+  width:100%;
+  text-align:center;
+  z-index:2;
+}
+
+h1{
+  font-size:3.5rem;
+  color:#ffd700;
+  text-shadow:0 0 15px #ffd700,0 0 30px #ffcc00,0 0 50px #ffaa00;
+}
+
+p{
+  margin-top:15px;
+  font-size:1.2rem;
+  color:#e0ffff;
+}
+</style>
+</head>
+<body>
+
+<div class="moon"></div>
+
+<div class="container">
+  <h1>Ramzan Mubarak</h1>
+  <p>Saima Khan 🌙 May Allah bless you with Noor, Peace & Barakah ✨</p>
+</div>
+
+<div class="camel">🐫</div>
+<div class="desert"></div>
+
+<script>
+/* Stars */
+for(let i=0;i<200;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.top=Math.random()*window.innerHeight+"px";
+  star.style.left=Math.random()*window.innerWidth+"px";
+  star.style.animationDuration=(Math.random()*3+1)+"s";
+  document.body.appendChild(star);
+}
+
+/* Golden particles */
+for(let i=0;i<50;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*window.innerWidth+"px";
+  p.style.bottom="-10px";
+  p.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(p);
+}
+</script>
+
+</body>
+</html>
